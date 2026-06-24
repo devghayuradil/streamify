@@ -24,7 +24,9 @@ export async function getMovieById(id: string): Promise<TMDBMovieDetail> {
 
 export async function getGenres(): Promise<TMDBGenre[]> {
   const data = await tmdbFetch<{ genres: TMDBGenre[] }>(
-    "/genre/movie/list"
+    "/genre/movie/list",
+    {},
+    { cache: "force-cache" }
   );
   return data.genres;
 }

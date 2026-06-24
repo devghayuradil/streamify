@@ -29,3 +29,5 @@ export interface TMDBResponse<T> {
   total_pages: number;
   total_results: number;
 }
+
+export type FetchStrategy = { next: { revalidate: number } } | { cache: "no-store" } | { cache: "force-cache" }
