@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock } from "lucide-react";
 
-const IMAGE_BASE = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE;
+import { TMDB_IMAGE_BASE, IMAGE_SIZE } from "@/lib/constants/client";
 
 export function ContinueWatching() {
   const { history } = useWatchHistory();
@@ -30,7 +30,7 @@ export function ContinueWatching() {
                 <div className="relative aspect-[2/3] bg-muted">
                   {item.poster_path ? (
                     <Image
-                      src={`${IMAGE_BASE}/w200${item.poster_path}`}
+                      src={`${TMDB_IMAGE_BASE}/${IMAGE_SIZE.thumbnail}${item.poster_path}`}
                       alt={item.title}
                       fill
                       sizes="96px"

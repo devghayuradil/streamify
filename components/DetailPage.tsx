@@ -9,7 +9,7 @@ import { useWatchHistory } from "@/hooks/useWatchHistory";
 import { ArrowLeft, Star, Clock, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-const IMAGE_BASE = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE;
+import { TMDB_IMAGE_BASE, IMAGE_SIZE } from "@/lib/constants/client";
 
 interface DetailPageProps {
     movie: TMDBMovieDetail;
@@ -19,7 +19,7 @@ export function DetailPage({ movie }: DetailPageProps) {
     const { addToHistory } = useWatchHistory();
 
     const backdropUrl = movie.backdrop_path
-        ? `${IMAGE_BASE}/w1280${movie.backdrop_path}`
+        ? `${TMDB_IMAGE_BASE}/${IMAGE_SIZE.backdrop}${movie.backdrop_path}`
         : null;
 
     const year = movie.release_date
@@ -68,7 +68,7 @@ export function DetailPage({ movie }: DetailPageProps) {
                     <div className="relative shrink-0 w-40 md:w-52 aspect-[2/3] rounded-lg overflow-hidden border border-border mx-auto md:mx-0 bg-muted">
                         {movie.poster_path ? (
                             <Image
-                                src={`${IMAGE_BASE}/w500${movie.poster_path}`}
+                                src={`${TMDB_IMAGE_BASE}/${IMAGE_SIZE.poster}${movie.poster_path}`}
                                 alt={movie.title}
                                 fill
                                 sizes="(max-width: 768px) 160px, 208px"

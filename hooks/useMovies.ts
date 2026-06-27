@@ -2,15 +2,19 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { TMDBMovie } from "@/services/tmdb/types";
+import { useQueryParam } from "@/hooks/useQueryParam";
+import { buildUrl } from "@/lib/utils";
+import { API_ROUTES, QUERY_PARAMS } from "@/lib/constants/client";
 
 interface UseMoviesOptions {
   initialMovies: TMDBMovie[];
 }
 
 export function useMovies({ initialMovies }: UseMoviesOptions) {
+  const [searchQuery, setSearchQuery] = useQueryParam(QUERY_PARAMS.search);
+  const [selectedGenreId, setSelectedGenreId] = useQueryParam(QUERY_PARAMS.genre);
+
   const [movies, setMovies] = useState<TMDBMovie[]>(initialMovies);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenreId, setSelectedGenreId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,16 +23,10 @@ export function useMovies({ initialMovies }: UseMoviesOptions) {
     setError(null);
 
     try {
-      let url = "/api/movies";
-      const params = new URLSearchParams();
-
-      if (searchQuery.trim()) {
-        params.set("search", searchQuery);
-      } else if (selectedGenreId) {
-        params.set("genreId", selectedGenreId);
-      }
-
-      if (params.toString()) url += `?${params.toString()}`;
+      const url = buildUrl(API_ROUTES.movies, {
+        [QUERY_PARAMS.search]: searchQuery.trim() || undefined,
+        [QUERY_PARAMS.genreId]: searchQuery.trim() ? undefined : selectedGenreId,
+      });
 
       const res = await fetch(url);
       if (!res.ok) throw new Error("Failed to fetch movies");
@@ -44,7 +42,6 @@ export function useMovies({ initialMovies }: UseMoviesOptions) {
 
   useEffect(() => {
     if (!searchQuery && !selectedGenreId) {
-      console.log("render")
       setMovies(initialMovies);
       return;
     }

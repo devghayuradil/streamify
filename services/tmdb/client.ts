@@ -1,10 +1,7 @@
 import { FetchStrategy } from "./types";
+import { TMDB_BASE_URL, TMDB_API_KEY } from "@/lib/constants/server";
 
-const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = process.env.TMDB_API_KEY as string;
-
-
-if (!API_KEY) {
+if (!TMDB_API_KEY) {
   throw new Error("TMDB_API_KEY is not defined in environment variables");
 }
 
@@ -14,9 +11,9 @@ export async function tmdbFetch<T>(
   params: Record<string, string> = {},
   fetchOptions: FetchStrategy = { next: {revalidate: 600}}
 ): Promise<T> {
-  const url = new URL(`${BASE_URL}${endpoint}`);
+  const url = new URL(`${TMDB_BASE_URL}${endpoint}`);
 
-  url.searchParams.set("api_key", API_KEY);
+  url.searchParams.set("api_key", TMDB_API_KEY);
 
   Object.entries(params).forEach(([key, value]) => {
     url.searchParams.set(key, value);

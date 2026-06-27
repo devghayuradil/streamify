@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TMDBMovie } from "@/services/tmdb/types";
 import { Star } from "lucide-react";
 
-const IMAGE_BASE = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE;
+import { TMDB_IMAGE_BASE, IMAGE_SIZE } from "@/lib/constants/client";
 
 interface ContentCardProps {
   movie: TMDBMovie;
@@ -21,7 +21,7 @@ export function ContentCard({ movie }: ContentCardProps) {
         <div className="relative aspect-[2/3] w-full bg-muted">
           {movie.poster_path ? (
             <Image
-              src={`${IMAGE_BASE}/w500${movie.poster_path}`}
+              src={`${TMDB_IMAGE_BASE}/${IMAGE_SIZE.poster}${movie.poster_path}`}
               alt={movie.title}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
