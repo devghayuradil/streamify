@@ -2,7 +2,7 @@
 
 A responsive video streaming content browser built with Next.js 16, TypeScript, and Tailwind CSS. Browse trending movies, search by title, filter by genre, and watch HLS video streams — all in a clean, mobile-first interface.
 
-**Live Demo:** [your-vercel-link-here]  
+**Live Demo:** https://streamify-teal-seven.vercel.app/  
 **Built with:** Next.js · TypeScript · Tailwind CSS · shadcn/ui · TMDB API · hls.js
 
 ---
