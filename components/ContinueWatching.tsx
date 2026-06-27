@@ -16,7 +16,7 @@ export function ContinueWatching() {
     <section className="space-y-3">
       <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
         <Clock className="w-5 h-5" />
-        Continue Watching
+        Continue Watching..
       </h2>
       <div className="flex gap-3 overflow-x-auto pb-2">
         {history.map((item) => {
