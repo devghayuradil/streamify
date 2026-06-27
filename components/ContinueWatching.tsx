@@ -33,6 +33,7 @@ export function ContinueWatching() {
                       src={`${IMAGE_BASE}/w200${item.poster_path}`}
                       alt={item.title}
                       fill
+                      sizes="96px"
                       className="object-cover"
                     />
                   ) : (

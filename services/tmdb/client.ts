@@ -22,8 +22,6 @@ export async function tmdbFetch<T>(
     url.searchParams.set(key, value);
   });
 
-  console.log(fetchOptions,"fetchOptions")
-
   const res = await fetch(url.toString(), fetchOptions);
 
   if (!res.ok) {

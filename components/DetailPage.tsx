@@ -44,6 +44,7 @@ export function DetailPage({ movie }: DetailPageProps) {
                         src={backdropUrl}
                         alt={movie.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 100vw"
                         className="object-cover"
                         priority
                     />
@@ -70,6 +71,7 @@ export function DetailPage({ movie }: DetailPageProps) {
                                 src={`${IMAGE_BASE}/w500${movie.poster_path}`}
                                 alt={movie.title}
                                 fill
+                                sizes="(max-width: 768px) 160px, 208px"
                                 className="object-cover"
                             />
                         ) : (
