@@ -14,6 +14,11 @@ export const IMAGE_SIZE = {
 export const WATCH_HISTORY_STORAGE_KEY = "streamify_watch_history";
 export const WATCH_HISTORY_MAX_ITEMS = 10;
 
+// ─── Test Stream ───────────────────────────────────────────────────────────────
+export const TEST_STREAM =
+  "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+
+
 // ─── API Routes ───────────────────────────────────────────────────────────────
 
 export const API_ROUTES = {

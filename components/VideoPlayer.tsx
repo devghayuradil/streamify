@@ -2,9 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Hls from "hls.js";
+import { TEST_STREAM } from "@/lib/constants/client";
 
-const TEST_STREAM =
-  "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
 interface VideoPlayerProps {
   streamUrl?: string;

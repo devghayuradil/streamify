@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { TMDBMovieDetail } from "@/services/tmdb/types";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { useWatchHistory } from "@/hooks/useWatchHistory";
@@ -16,6 +17,7 @@ interface DetailPageProps {
 }
 
 export function DetailPage({ movie }: DetailPageProps) {
+    const router = useRouter();
     const { addToHistory } = useWatchHistory();
 
     const backdropUrl = movie.backdrop_path
@@ -54,13 +56,13 @@ export function DetailPage({ movie }: DetailPageProps) {
 
             <div className="max-w-5xl mx-auto px-4 py-6 space-y-8">
                 {/* Back button */}
-                <Link
-                    href="/"
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                <button
+                    onClick={() => router.back()}
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Browse
-                </Link>
+                </button>
 
                 {/* Movie Info */}
                 <div className="flex flex-col md:flex-row gap-6">
